@@ -54,3 +54,26 @@ pip3 install boto3
 sudo apt install -y sudo apt-utils
 sudo apt-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
 sudo apt -y install terraform
+
+#  switch user to 
+sudo su - jenkins
+
+# aws cli
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+sudo apt install unzip
+unzip awscliv2.zip
+sudo ./aws/install
+aws --version
+
+# eksctl
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+cd /tmp
+sudo mv /tmp/eksctl /bin
+eksctl version
+
+# kubectl
+sudo apt update
+ sudo apt install curl
+ curl -LO https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl
+ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+ kubectl version --client
